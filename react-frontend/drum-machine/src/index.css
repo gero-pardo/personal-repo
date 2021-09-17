@@ -1,0 +1,11 @@
+#ancla {
+    display:flex;
+    margin: 50px 0 0 15px;
+}
+
+#display {
+    border:solid;
+    border-radius:2px;
+    margin: -2px 0 0 20px;
+    padding: 2px
+}

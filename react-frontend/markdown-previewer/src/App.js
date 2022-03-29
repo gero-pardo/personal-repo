@@ -68,8 +68,8 @@ const Previewer = () => {
   }
 
   return (
-    <div>
-        <label for='#editor'>TEXTMARKDOWN</label>
+    <div id="main-body">
+        <label id="tittletext" for='#editor'>TEXTMARKDOWN</label>
         <br/>
         <textarea 
           id='editor' 

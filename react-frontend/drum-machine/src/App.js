@@ -61,7 +61,7 @@ const DrumMachine = () => {
                 handleKeyPress={handleKeyPress}
       />
       <div id='display'>
-        {displayText}
+        <p id='text' >{displayText}</p>
       </div>
     </div>
   )

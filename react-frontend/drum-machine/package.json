@@ -1,6 +1,6 @@
 {
   "name": "drum-machine",
-  "homepage": "https://gero-pardo.github.io/drum-machine/",
+  "homepage": ".",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

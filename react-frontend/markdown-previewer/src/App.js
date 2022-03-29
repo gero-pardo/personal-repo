@@ -86,15 +86,3 @@ const Previewer = () => {
 }
 
 export default Previewer;
-
-
-/*
-class Previewer extends React.Component {
-
-  handleChange(e) {
-    this.setState({
-      text: e.target.value
-    });
-  }
-}
-*/

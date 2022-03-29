@@ -50,10 +50,11 @@ function App() {
     }
 
     const numberToClock = (e) => {
-        let minutes = Math.floor(e / 60);
-        let seconds = e - minutes * 60;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
+        let minutes, seconds;
+        minutes = Math.floor(e / 60);
+        seconds = e - minutes * 60;
+        if (seconds < 10) { seconds = "0" + seconds; }
+        if (minutes < 10) { minutes = "0" + minutes; }
         return minutes + ':' + seconds;
     }
 

@@ -75,9 +75,9 @@ function App() {
             timeoutId = setTimeout( wrapper, interval - (deviatedEndpoint - nextEndpoint) );
             nextEndpoint += interval;
 
-            console.log("setting timeout...")
-            console.log(timeoutId)
-            console.log('deviation', deviatedEndpoint - nextEndpoint);            
+            //console.log("setting timeout...")
+            //console.log(timeoutId)
+            //console.log('deviation', deviatedEndpoint - nextEndpoint);            
 
             callback();
 
@@ -132,12 +132,12 @@ function App() {
     const startStop = () => {
    
         if (timerSwitch.current === "off") {
-            console.log("starting...")
+            //console.log("starting...")
             timerSwitch.current = "on";
             timer.current = sessionTimeLeft;
             startTimer();
         } else {
-            console.log("pausing...")
+            //console.log("pausing...")
             timerSwitch.current = "off";
             timerKill.current();
         }

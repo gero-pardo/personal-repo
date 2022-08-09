@@ -3,7 +3,7 @@ import React, {useState,} from "react";
 function App() {
 
   const [inputValue, setInputValue] = useState("");  // current number to be input
-    const [inputArray, setInputArray] = useState([]); //  saves all formulas in array
+  const [inputArray, setInputArray] = useState([]); //  saves all formulas in array
   const [formulaString, setFormulaString] = useState("0"); // displays current input in full
   const [formula, setFormula] = useState("0") // displays formulas and result
   const [outputValue, setOutputValue] = useState(""); // display end result

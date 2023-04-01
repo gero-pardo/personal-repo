@@ -36,21 +36,22 @@ local widgets = require('gui.widgets');
 
 validArgs = utils.invert({
  'help',
+ 'nogui',
  'console',
- 'showids',
  'printunits',
  'printreligions',
- 'printall'
+ 'printall',
+ 'showids'
 })
 
 local args = utils.processArgs({...}, validArgs)
 
-local printstate = false
 local nogui = false
-local showids = false
+local printstate = false
 local printreligions = false
 local printunits = false
 local printall = false
+local showids = false
 local helpText = [===[
 
 	cult-lists.lua

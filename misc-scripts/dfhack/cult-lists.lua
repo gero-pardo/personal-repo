@@ -56,9 +56,8 @@ local helpText = [===[
 
 	cult-lists.lua
 	==============
-	Organizes fort deities in a list. Default parameter prints all deities and their worshippers.
-	Can be configured to show all deities worshipped by a unit, and to show the IDs of both.
-	A GUI with all information neatly can be called.
+	Organizes fort deities in a list. Default opens a GUI with deities and religions.
+	Alternative format lets results be printed to console, with some extra additions.
 	NOTE: DFHack API is currently unable to filter for permanent residents
 
 	arguments:
@@ -79,11 +78,11 @@ local helpText = [===[
 			prints all units and their personal deities
 			
 		-printall
-			prints both cults list and worship list
+			prints cults list, worship list and unit list
 			warning: large forts will exceed the console history limit.
 			
 		-showids
-			prints religion's entity ids, deity's history figure ids and unit's in-game ids
+			prints religion's history entity ids, deity's history figure ids and unit's in-game ids
 
 		Examples:
 			All cults with clickable gui and no prints

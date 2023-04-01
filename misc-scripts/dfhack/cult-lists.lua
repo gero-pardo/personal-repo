@@ -734,131 +734,37 @@ function Enablegui:init() -- main mount structure
 			
 				widgets.Label{
 					frame={t=0, l=1},
-					text={ {text=function() 
-									if 	self.subviews.pages:getSelected() == 1 then
-										return dfhack.TranslateName(df.historical_figure.find(  self.deity_table[self.cult_index_state].deity_id  ).name, true)	
-									else 
-										return self.religion_table[self.cult_index_state].religion_name
-									end
-								end, pen=COLOR_RED},
-					},
-				},
-			
-				widgets.Label{ 
-					frame={t=2, l=1},
-					text={ {text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("sphere") 
-									else
-										return 'Dedicates a cult to:'
-									end									
-								end},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=3, l=1},
-					text={ {text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return table.concat(self.deity_spheres_table, ", ")..'.'
-									else
-										return self.religion_table[self.cult_index_state].religion_deity
-									end
-								end, pen=COLOR_BROWN},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=5, l=1},
-					text={ {text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("race_grammar") 
-									else
-										return self:label_sorter("religion_grammar")
-									end					
-								end},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=7, l=1},
-					text={ {text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("civ_grammar")
-									else
-										return 'It was founded by faithful from:'
-									end			
-								end},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=8, l=1},
-					text={ {text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("civ")
-									else
-										return self.religion_table[self.cult_index_state].religion_civ
-									end						
-								end, pen=COLOR_YELLOW},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=10, l=1},
-					text={ {text=function()
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("deity_tally")
-									else
-										return self:label_sorter("cult_tally")
-									end				
-								end},
-					},
-				},
-				
-				widgets.Label{
-					frame={t=12, l=1},
-					text= { {text=function()
-									if self.subviews.pages:getSelected() == 1 then
-										return 'Of whom the '..self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_race..' '
-									else
-										return 'Which the '..self.religion_table[self.cult_index_state].member_list[self.faithful_index_state].member_race..' '
-									end	
-								end},
-							NEWLINE,
-							NEWLINE,
-							{text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return dfhack.TranslateName(  df.historical_figure.find(  self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_id  ).name, true)
-									else
-										return dfhack.TranslateName(  df.historical_figure.find(  self.religion_table[self.cult_index_state].member_list[self.faithful_index_state].member_id  ).name, true)
-									end	
-								end, pen=COLOR_BLUE},
-							NEWLINE,
-							NEWLINE,
-							{text=function() 
-									if self.subviews.pages:getSelected() == 1 then
-										return self:label_sorter("strength_grammar")
-									else
-										return 'is known to practice'
-									end	
-								end},
-							{text=function()
-									if self.subviews.pages:getSelected() == 1 then
-										return self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_faith
-									else
-										return 
-									end	
-								end, pen=COLOR_LIGHTBLUE},
-							{text=function()
-									if self.subviews.pages:getSelected() == 1 then
-										return ' worshipper of.'
-									else
-										return 
-									end
-								end},
-					},
-				},
+					text= { {text=function() return self:label_sorter("line_1_title") end, pen=COLOR_RED},
+                            NEWLINE,
+                            NEWLINE, -- t=2
+                            {text=function() return self:label_sorter("line_3_text") end},
+                            NEWLINE,
+                            {text=function() return self:label_sorter("line_4_subject") end, pen=COLOR_BROWN},
+                            NEWLINE,
+                            NEWLINE, -- t=5
+                            {text=function() return self:label_sorter("line_6_text") end},
+                            NEWLINE,
+                            NEWLINE, -- t=7
+                            {text=function() return self:label_sorter("line_8_text") end},
+                            NEWLINE,
+                            {text=function() return self:label_sorter("line_9_subject") end, pen=COLOR_YELLOW},
+                            NEWLINE,
+                            NEWLINE, --t=10
+                            {text=function() return self:label_sorter("line_11_counter") end},
+                            NEWLINE,
+                            NEWLINE, --t=12
+                            {text=function() return self:label_sorter("line_13_text") end},
+                            NEWLINE,
+                            NEWLINE, -- t=14
+                            {text=function() return self:label_sorter("line_15_subject") end, pen=COLOR_BLUE},
+                            NEWLINE,
+                            NEWLINE, -- t=16
+                            {text=function() return self:label_sorter("line_17_subject") end},
+                            {text=function() return self:label_sorter("line_17_color") end, pen=COLOR_LIGHTBLUE},
+                            {text=function() return self:label_sorter("line_17_end") end},
+                    },
+            
+                },
 			},
 		},
 	}
@@ -966,83 +872,161 @@ end
 
 function Enablegui:label_sorter(arg) -- writes text snippets
 
-	if arg == "sphere" then	
-		if self.deity_spheres_table[2] ~= nil then
-			return 'Is sovereign in the realms of:'		
-		elseif self.deity_spheres_table[1] ~= nil then
-			return 'Is sovereign in the realm of:'		
-		else 
-			return 'Holds claim over no power.'
-		end
-	end
+    if arg == "line_1_title" then -- title
+        if 	self.subviews.pages:getSelected() == 1 then
+            return dfhack.TranslateName(df.historical_figure.find(  self.deity_table[self.cult_index_state].deity_id  ).name, true)	
+        else 
+            return self.religion_table[self.cult_index_state].religion_name
+        end
+    end
+
+    if arg == "line_3_text" then -- dressing text
+        if self.subviews.pages:getSelected() == 1 then
+
+            if self.deity_spheres_table[2] ~= nil then
+                return 'Is sovereign in the realms of:'		
+            elseif self.deity_spheres_table[1] ~= nil then
+                return 'Is sovereign in the realm of:'		
+            else 
+                return 'Holds claim over no power.'
+            end
+
+        else
+            return 'Dedicates a cult to:'
+        end	
+    end
+
+    if arg == "line_4_subject" then -- spheres and deity
+        if self.subviews.pages:getSelected() == 1 then
+            return table.concat(self.deity_spheres_table, ", ")..'.'
+        else
+            return self.religion_table[self.cult_index_state].religion_deity
+        end
+    end
+
+    if arg  == "line_6_text" then -- deity race
+        if self.subviews.pages:getSelected() == 1 then
+
+            if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then
+                if string.match(self.deity_table[self.cult_index_state].deity_civ_race_name, "elf") then
+                    return 'It is a shapeless force of nature.'
+                else 
+                    return 'They oft take the form of a '..self.deity_table[self.cult_index_state].deity_race_name.."."
+                end
+            elseif string.match(self.deity_table[self.cult_index_state].deity_race, "FORGOTTEN") then
+                return 'They are a terrifying cthonic monster.'
+            elseif string.match(self.deity_table[self.cult_index_state].deity_race, "TITAN") then
+                return 'They are a primordial being from ages prior.'
+            elseif string.match(self.deity_table[self.cult_index_state].deity_race, "DIVINE") then
+                return 'They are a servant of the god\'s.'
+            elseif string.match(self.deity_table[self.cult_index_state].deity_race, "DEMON") then
+                return 'They are a fierce demon, bent on destruction.'
+            else 											-- megabeast
+                return 'They are a great '..self.deity_table[self.cult_index_state].deity_race_name..', bound to no master.'
+            end
+
+        else
+
+            if string.match(self.religion_table[self.cult_index_state].religion_civ_race_name, "elf") ~= true then
+                return 'and their dominion.'
+            else
+                return 'and it\'s primordial forces'
+            end
+
+        end	
+    end
+
+    if arg == "line_8_text" then -- civ text
+        if self.subviews.pages:getSelected() == 1 then
+
+            if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then
+                return 'Their myth was first told by '..self.deity_table[self.cult_index_state].deity_civ_race_name..'s from:'
+            else
+                return nil
+            end	
+
+        else
+            return 'It was founded by faithful from:'
+        end	
+    end	
+
+    if arg == "line_9_subject" then -- civ name
+        if self.subviews.pages:getSelected() == 1 then
+
+            if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then		
+                return self.deity_table[self.cult_index_state].deity_civ_name
+            else
+                return nil
+            end
+
+        else
+            return self.religion_table[self.cult_index_state].religion_civ
+        end	
+    end
+
+    if arg == "line_11_counter" then -- cult size
+        if self.subviews.pages:getSelected() == 1 then
+
+            if #self.deity_table[self.cult_index_state].worshipper_list ~= 1 then
+                return 'Their cult accounts for '..#self.deity_table[self.cult_index_state].worshipper_list..' citizens.'
+            else
+                return 'Their cult accounts for '..#self.deity_table[self.cult_index_state].worshipper_list..' citizen.'
+            end
+
+        else
+
+            if #self.religion_table[self.cult_index_state].member_list ~= 1 then
+                return 'Some '..#self.religion_table[self.cult_index_state].member_list..' citizens follow their doctrine.'
+            else
+                return 'A single citizen follows their doctrine.'
+            end
+
+        end			
+    end
+
+    if arg == "line_13_text" then -- unit race
+        if self.subviews.pages:getSelected() == 1 then
+            return 'Of whom the '..self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_race..' '
+        else
+            return 'Which the '..self.religion_table[self.cult_index_state].member_list[self.faithful_index_state].member_race..' '
+        end	
+    end
+
+    if arg == "line_15_subject" then -- unit name
+        if self.subviews.pages:getSelected() == 1 then
+            return dfhack.TranslateName(  df.historical_figure.find(  self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_id  ).name, true)
+        else
+            return dfhack.TranslateName(  df.historical_figure.find(  self.religion_table[self.cult_index_state].member_list[self.faithful_index_state].member_id  ).name, true)
+        end	
+    end    
+
+    if arg == "line_17_subject" then -- unit dressing 1
+        if self.subviews.pages:getSelected() == 1 then
+            if self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_faith == "ardent" then
+                return 'is an '
+            else
+                return 'is a '
+            end
+        else
+            return 'is known to practice.'
+        end	
+    end
+
+    if arg == "line_17_color" then -- unit faith
+        if self.subviews.pages:getSelected() == 1 then
+            return self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_faith
+        else
+            return nil
+        end	
+    end
 	
-	if arg == "religion_grammar" then
-		if string.match(self.religion_table[self.cult_index_state].religion_civ_race_name, "elf") ~= true then
-			return 'and their dominion.'
-		else
-			return 'and it\'s primordial forces'
-		end
-	end
-	
-	if arg == "race_grammar" then
-		if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then
-			if string.match(self.deity_table[self.cult_index_state].deity_civ_race_name, "elf") then
-				return 'It is a shapeless force of nature.'
-			else 
-				return 'They oft take the form of a '..self.deity_table[self.cult_index_state].deity_race_name.."."
-			end
-		elseif string.match(self.deity_table[self.cult_index_state].deity_race, "FORGOTTEN") then
-			return 'They are a terrifying cthonic monster.'
-		elseif string.match(self.deity_table[self.cult_index_state].deity_race, "TITAN") then
-			return 'They are a primordial being from ages prior.'
-		elseif string.match(self.deity_table[self.cult_index_state].deity_race, "DIVINE") then
-			return 'They are a servant of the god\'s.'
-		elseif string.match(self.deity_table[self.cult_index_state].deity_race, "DEMON") then
-			return 'They are a fierce demon, bent on destruction.'
-		else 											-- megabeast
-			return 'They are a great '..self.deity_table[self.cult_index_state].deity_race_name..', bound to no master.'
-		end
-	end 
-	
-	if arg == "civ_grammar" then
-		if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then
-			return 'Their myth was first told by '..self.deity_table[self.cult_index_state].deity_civ_race_name..'s from:'
-		else
-			return nil
-		end	
-	end
-	
-	if arg == "civ" then 
-		if self.deity_table[self.cult_index_state].deity_civ_name ~= nil then		
-			return self.deity_table[self.cult_index_state].deity_civ_name
-		else
-			return nil
-		end
-	end
-	
-	if arg == "deity_tally" then
-		if #self.deity_table[self.cult_index_state].worshipper_list ~= 1 then
-			return 'Their cult accounts for '..#self.deity_table[self.cult_index_state].worshipper_list..' citizens.'
-		else
-			return 'Their cult accounts for '..#self.deity_table[self.cult_index_state].worshipper_list..' citizen.'
-		end
-	end
-	
-	if arg == "cult_tally" then
-		if #self.religion_table[self.cult_index_state].member_list ~= 1 then
-			return 'Some '..#self.religion_table[self.cult_index_state].member_list..' citizens follow their doctrine.'
-		else
-			return 'A single citizen follows their doctrine.'
-		end
-	end
-	
-	if arg == "strength_grammar" then
-		if self.deity_table[self.cult_index_state].worshipper_list[self.faithful_index_state].worshipper_faith == "ardent" then
-			return 'is an '
-		else
-			return 'is a '
-		end
-	end
+    if arg == "line_17_end" then -- unit dressing 2
+        if self.subviews.pages:getSelected() == 1 then
+            return ' worshipper of.'
+        else
+            return 
+        end
+    end
 
 end
 
